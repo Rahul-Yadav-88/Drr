@@ -240,14 +240,14 @@ export default function Footer() {
               href="/privacy"
               className="hover:text-cyan-300 transition-colors"
             >
-              Privacy
+              Private Policy
             </Link>
 
             <Link
               href="/terms"
               className="hover:text-cyan-300 transition-colors"
             >
-              Terms
+              Terms & Conditions
             </Link>
 
           </div>
