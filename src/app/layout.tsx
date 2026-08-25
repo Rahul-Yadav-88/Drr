@@ -1,0 +1,38 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from '../components/Global/Navbar'
+import Footer from '../components/Global/Footer'
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Dr. Gaurav Jadon | Consultant Pediatrician in Dubai",
+  description: "Dr. Gaurav Jadon is a Consultant Pediatrician with over 28 years of post-specialization experience across India, Kuwait, and the UAE.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Navbar/>
+        {children}
+        <Footer/>
+      </body>
+    </html>
+  );
+}
