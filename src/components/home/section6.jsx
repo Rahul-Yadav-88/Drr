@@ -1,105 +1,279 @@
-// Section6.jsx
+
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HeartPulse, Baby, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Baby,
+  HeartPulse,
+  ShieldCheck,
+  Stethoscope,
+  Sparkles,
+  Globe2,
+} from "lucide-react";
 
-const cardsData = [
+const features = [
   {
-    title: "Children Care",
-    image: "/card1.png",
+    number: "01",
+    title: "Comprehensive Children's Care",
+    subtitle: "Care through every stage of childhood",
     description:
-      "Comprehensive care for children up to 18 years including complex pediatric cases.",
+      "Individualized healthcare for infants, children and adolescents up to 18 years, with attention to their unique health needs, growth and development.",
+    image: "/card1.png",
+    alt: "Comprehensive pediatric healthcare for children",
     icon: Baby,
+    accent: "from-[#D7F3F0] to-[#E8F7F7]",
+    reverse: false,
   },
   {
-    title: "General Pediatrics",
-    image: "/card2.png",
+    number: "02",
+    title: "General Pediatric Healthcare",
+    subtitle: "Prevention, diagnosis and wellbeing",
     description:
-      "Expert care for infections, nutrition, growth, vaccinations and preventive health.",
+      "Medical guidance for common childhood illnesses, nutrition, vaccinations, growth monitoring and preventive healthcare.",
+    image: "/card2.png",
+    alt: "General pediatric consultation and child health assessment",
     icon: HeartPulse,
+    accent: "from-[#E2EAFF] to-[#F0F3FF]",
+    reverse: true,
   },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.75, ease: "easeOut" },
+  },
+};
+
 export default function Section6() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#F7FCFD] to-white py-20">
-      <div className="absolute -left-20 top-0 h-80 w-80 rounded-full bg-cyan-200/30 blur-[120px]" />
-      <div className="absolute right-0 bottom-0 h-96 w-96 rounded-full bg-teal-200/30 blur-[150px]" />
+    <section
+      id="why-choose-dr-gaurav-jadon"
+      aria-labelledby="why-choose-heading"
+      className="relative isolate overflow-hidden bg-[#F8FBFC] py-24 sm:py-28"
+    >
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute -left-40 top-20 h-[450px] w-[450px] rounded-full bg-cyan-100/80 blur-[130px]" />
+      <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-teal-100/70 blur-[140px]" />
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="pointer-events-none absolute inset-0 opacity-[0.025] [background-image:radial-gradient(#0f5966_1px,transparent_1px)] [background-size:26px_26px]" />
 
+      <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+
+        {/* INTRODUCTION */}
         <motion.div
-          initial={{opacity:0,y:40}}
-          whileInView={{opacity:1,y:0}}
-          viewport={{once:true}}
-          transition={{duration:.7}}
-          className="text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-16 grid gap-8 lg:grid-cols-[1fr_0.65fr] lg:items-end"
         >
-          <span className="rounded-full bg-cyan-100 px-5 py-2 text-cyan-700 font-semibold">
-            Why Choose Dr. Gaurav Jadon
-          </span>
+          <div>
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-teal-100 bg-white px-4 py-2 shadow-sm">
+              <Sparkles size={15} className="text-teal-600" />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-800">
+                The Difference in Care
+              </span>
+            </div>
 
-          <h2 className="mt-6 text-5xl font-black text-slate-900">
-            Trusted Pediatric Care
-          </h2>
+            <h2
+              id="why-choose-heading"
+              className="max-w-4xl text-4xl font-black leading-[1.08] tracking-[-0.045em] text-[#12313B] sm:text-5xl lg:text-7xl"
+            >
+              More than healthcare.
+              <span className="block text-[#079B98]">
+                A healthier future.
+              </span>
+            </h2>
+          </div>
 
-          <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-slate-600">
-            28+ years of international pediatric experience across India,
-            Kuwait and the UAE delivering compassionate, evidence‑based care.
+          <p className="max-w-lg text-base leading-8 text-slate-600 lg:pb-2">
+            Choosing the right pediatrician matters. Dr. Gaurav Jadon
+            combines international clinical experience with a thoughtful,
+            evidence-based approach to children's health and development.
           </p>
         </motion.div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-          {cardsData.map((card,index)=>{
-            const Icon=card.icon;
-            return(
-              <motion.div
-                key={index}
-                initial={{opacity:0,y:40}}
-                whileInView={{opacity:1,y:0}}
-                whileHover={{y:-8,scale:1.02}}
-                viewport={{once:true}}
-                transition={{delay:index*0.15}}
-                className="overflow-hidden rounded-[30px] bg-white shadow-xl border border-slate-200"
+        {/* EXPERIENCE HIGHLIGHT */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative mb-16 overflow-hidden rounded-[2rem] bg-[#0B3945] p-7 sm:p-10"
+        >
+          <div className="pointer-events-none absolute -right-16 -top-32 h-80 w-80 rounded-full border border-white/10" />
+          <div className="pointer-events-none absolute -right-5 -top-20 h-64 w-64 rounded-full border border-white/10" />
+
+          <div className="relative grid gap-8 md:grid-cols-[auto_1fr_auto] md:items-center">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1AA99F] text-white shadow-lg shadow-teal-900/30">
+                <Stethoscope size={30} />
+              </div>
+
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.17em] text-teal-200">
+                  Clinical experience
+                </p>
+                <p className="mt-1 text-3xl font-black text-white">
+                  28+ Years
+                </p>
+              </div>
+            </div>
+
+            <div className="max-w-xl md:border-l md:border-white/20 md:pl-8">
+              <p className="text-lg font-bold text-white">
+                International pediatric experience
+              </p>
+              <p className="mt-2 text-sm leading-7 text-slate-300">
+                Clinical experience across India, Kuwait and the United Arab Emirates.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 text-sm font-semibold text-teal-100">
+              <Globe2 size={22} />
+              <span>India · Kuwait · UAE</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* FEATURE SHOWCASE */}
+        <div className="space-y-8">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+
+            return (
+              <motion.article
+                key={feature.number}
+                initial={{ opacity: 0, y: 45 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.75, delay: index * 0.12 }}
+                className={`group grid overflow-hidden rounded-[2.2rem] border border-[#E5EEF0] bg-white shadow-[0_15px_55px_rgba(16,60,70,0.045)] lg:min-h-[420px] lg:grid-cols-2 ${
+                  feature.reverse ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
               >
-                <div className="relative overflow-hidden">
-                  <img src={card.image} className="h-64 w-full object-cover transition duration-500 hover:scale-110" alt={card.title}/>
-                  <div className="absolute left-6 bottom-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-500 text-white shadow-xl">
-                    <Icon size={28}/>
+                {/* Image side */}
+                <div className="relative min-h-[280px] overflow-hidden sm:min-h-[360px] lg:min-h-full">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.accent}`} />
+
+                  <motion.div
+                    whileHover={{ scale: 1.045 }}
+                    transition={{ duration: 0.7 }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={feature.image}
+                      alt={feature.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
+
+                  {/* Image overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#102F39]/35 via-transparent to-transparent" />
+
+                  <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/50 bg-white/85 px-4 py-2 text-xs font-bold text-[#17434B] shadow-lg backdrop-blur-lg">
+                    <span className="h-2 w-2 rounded-full bg-teal-500" />
+                    Pediatric Expertise
+                  </div>
+
+                  <div className="absolute bottom-6 left-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/50 bg-white/90 text-teal-700 shadow-xl backdrop-blur-xl">
+                    <Icon size={27} />
+                  </div>
+
+                  <div className="absolute bottom-8 right-7 text-6xl font-black text-white/70">
+                    {feature.number}
                   </div>
                 </div>
 
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-slate-900">{card.title}</h3>
-                  <p className="mt-4 leading-8 text-slate-600">{card.description}</p>
-
-                  <div className="mt-6 flex items-center gap-2 text-cyan-600 font-semibold">
-                    Learn More <ArrowRight size={18}/>
+                {/* Text side */}
+                <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
+                  <div className="mb-6 flex items-center gap-3">
+                    <span className="h-[2px] w-9 bg-teal-500" />
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
+                      {feature.subtitle}
+                    </span>
                   </div>
+
+                  <h3 className="max-w-md text-3xl font-black leading-tight tracking-tight text-[#12313B] sm:text-4xl">
+                    {feature.title}
+                  </h3>
+
+                  <p className="mt-5 max-w-lg text-base leading-8 text-slate-600">
+                    {feature.description}
+                  </p>
+
+                  <Link
+                    href="/services"
+                    className="mt-8 inline-flex w-fit items-center gap-3 rounded-full border border-teal-200 bg-[#F0FAF9] px-6 py-3.5 text-sm font-bold text-teal-800 transition-all duration-300 hover:gap-5 hover:border-teal-500 hover:bg-teal-600 hover:text-white"
+                  >
+                    Explore Services
+                    <ArrowUpRight size={18} />
+                  </Link>
                 </div>
-              </motion.div>
-            )
+              </motion.article>
+            );
           })}
         </div>
 
+        {/* CREDENTIALS STRIP */}
         <motion.div
-          initial={{opacity:0}}
-          whileInView={{opacity:1}}
-          viewport={{once:true}}
-          className="mt-16 rounded-[32px] bg-gradient-to-r from-cyan-600 to-teal-600 p-10 text-center text-white"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mt-16 grid gap-6 rounded-[2rem] border border-[#E4EEF0] bg-white p-7 shadow-sm sm:grid-cols-[auto_1fr] sm:items-center sm:p-10"
         >
-          <ShieldCheck className="mx-auto mb-4" size={42}/>
-          <h3 className="text-3xl font-black">Compassion • Experience • Excellence</h3>
-          <p className="mx-auto mt-4 max-w-3xl text-cyan-50">
-            Comprehensive pediatric support from infancy through adolescence.
-          </p>
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E3F6F3] text-teal-700">
+            <ShieldCheck size={32} />
+          </div>
 
-          <Link href="/services">
-            <button className="mt-8 rounded-full bg-white px-8 py-4 font-semibold text-cyan-700 shadow-lg hover:scale-105 transition">
-              Explore Services
-            </button>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
+              Professional qualifications
+            </p>
+            <h3 className="mt-2 text-xl font-extrabold text-[#12313B] sm:text-2xl">
+              Qualified Pediatric Expertise
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+              MBBS, DCH, DNB Pediatrics and Diploma in European Board of Pediatrics.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* FINAL CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="mt-12 flex flex-col items-center justify-between gap-6 rounded-[2rem] bg-gradient-to-r from-[#DDF5F2] via-[#ECF8FA] to-[#E3EEFF] p-8 text-center sm:flex-row sm:text-left sm:p-10"
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
+              Compassion · Experience · Care
+            </p>
+            <h3 className="mt-3 text-2xl font-black text-[#12313B] sm:text-3xl">
+              Every stage of childhood matters.
+            </h3>
+            <p className="mt-2 text-sm leading-7 text-slate-600">
+              Discover the pediatric services available for your child.
+            </p>
+          </div>
+
+          <Link
+            href="/services"
+            className="inline-flex shrink-0 items-center gap-3 rounded-full bg-[#087F80] px-7 py-4 text-sm font-bold text-white shadow-lg shadow-teal-800/15 transition-all hover:-translate-y-1 hover:bg-[#066B6D]"
+          >
+            View All Services
+            <ArrowUpRight size={19} />
           </Link>
         </motion.div>
 

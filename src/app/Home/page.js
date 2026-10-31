@@ -7,7 +7,7 @@ import Section5 from '../../components/home/section5'
 import Section6 from '../../components/home/section6'
 // import Section7 from '../../components/home/section7'
 import Section8 from '../../components/home/section8'
-import Map from '../../components/home/Map'
+// import Map from '../../components/home/Map'
 import HeroCards from '../../components/home/heroCards'
 
 const Home = () => {
@@ -22,7 +22,7 @@ const Home = () => {
       <Section6/>
       {/* <Section7/> */}
       <Section8/>
-      <Map/>
+      {/* <Map/> */}
     </div>
   )
 }

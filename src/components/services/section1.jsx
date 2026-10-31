@@ -1,201 +1,251 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Stethoscope,
+  HeartPulse,
+  ShieldCheck,
+} from "lucide-react";
+
+const services = [
+  {
+    number: "01",
+    eyebrow: "EVERYDAY CHILD HEALTH",
+    title: "General Pediatrics & Child Health",
+    desc: "From routine health checkups and vaccinations to the diagnosis and treatment of common childhood illnesses, receive comprehensive pediatric care focused on prevention, healthy growth and development.",
+    img: "/1.avif",
+    icon: Stethoscope,
+    accent: "bg-[#DDF4F3]",
+  },
+  {
+    number: "02",
+    eyebrow: "NEWBORN TO ADOLESCENCE",
+    title: "Specialized Care for Children up to 18 Years",
+    desc: "Personalized healthcare for newborns, infants, children and adolescents, with attention to their changing medical needs, preventive health and age-appropriate treatment.",
+    img: "/2.jpg",
+    icon: HeartPulse,
+    accent: "bg-[#E5EFFB]",
+  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Section1() {
-  const services = [
-    {
-      title: "General Pediatrics & Child Health",
-      desc: "From routine checkups and vaccinations to managing common illnesses, Dr. Jadon ensures comprehensive care for every stage of childhood, focusing on prevention, growth, and development.",
-      img: "/1.avif",
-    },
-    {
-      title: "Expert Care for Children up to 18 Years",
-      desc: "Expert care for newborns, infants, children and adolescents requiring specialized monitoring, preventive care and advanced pediatric treatment.",
-      img: "/2.jpg",
-    },
-  ];
-
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#eef4ff] via-[#f8fbff] to-[#edf6ff] py-20">
-
-      {/* Background Blur */}
-      <div className="absolute -top-40 left-0 h-96 w-96 rounded-full bg-sky-300/30 blur-[140px]" />
-      <div className="absolute bottom-0 right-0 h-[450px] w-[450px] rounded-full bg-cyan-300/20 blur-[160px]" />
+    <section
+      id="pediatric-care"
+      aria-labelledby="pediatric-care-heading"
+      className="relative overflow-hidden bg-[#F5FAFA] py-20 md:py-28"
+    >
+      {/* Background details */}
+      <div className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-[#B9E9E7]/30 blur-[100px]" />
+      <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-[#D6E9F9]/50 blur-[100px]" />
 
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
 
-        {/* Heading */}
-
+        {/* Section heading */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: .7 }}
-          viewport={{ once: true }}
-          className="mx-auto max-w-4xl text-center"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-14 grid gap-7 lg:grid-cols-[1fr_0.8fr] lg:items-end"
         >
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <span className="h-[2px] w-10 bg-[#079B98]" />
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#078B89]">
+                Pediatric Excellence
+              </span>
+            </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white/70 px-5 py-2 backdrop-blur-md shadow-md">
-
-            <Sparkles
-              className="text-sky-600"
-              size={18}
-            />
-
-            <span className="text-sm font-semibold text-sky-700">
-              Pediatric Excellence
-            </span>
-
+            <h2
+              id="pediatric-care-heading"
+              className="max-w-2xl text-4xl font-bold leading-[1.12] tracking-tight text-[#12313B] sm:text-5xl lg:text-[58px]"
+            >
+              Comprehensive Pediatric Care
+              <span className="block text-[#079B98]">
+                for a Healthier Childhood.
+              </span>
+            </h2>
           </div>
 
-          <h2 className="mt-6 text-3xl font-bold leading-tight text-[#0B214A] sm:text-4xl lg:text-5xl">
-            Comprehensive Pediatric Care
-            <span className="block bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
-              You Can Trust
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-[15px] leading-8 text-gray-600 md:text-lg">
-            With
-            <span className="font-semibold text-sky-700"> 28 years </span>
-            of clinical expertise across India, Kuwait and the UAE,
-            Dr. Gaurav Jadon provides compassionate, evidence-based
-            healthcare for children
-            <span className="font-semibold text-sky-700">
-              {" "}
-              up to 18 years
-            </span>
-            . His patient-first approach focuses on early diagnosis,
-            preventive healthcare and personalized treatment for
-            every child.
-          </p>
-
+          <div className="lg:pb-2">
+            <p className="text-base leading-8 text-[#60747B] md:text-[17px]">
+              Dr. Gaurav Jadon provides compassionate, evidence-based
+              healthcare for children up to 18 years. With 28 years of
+              clinical experience across India, Kuwait and the UAE, his
+              approach focuses on early diagnosis, preventive care,
+              healthy development and personalized treatment.
+            </p>
+          </div>
         </motion.div>
 
-        {/* Cards */}
+        {/* Experience strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-8 flex flex-wrap items-center justify-between gap-5 border-y border-[#DCE9E9] py-5"
+        >
+          <div className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#DDF4F3]">
+              <ShieldCheck size={21} className="text-[#078B89]" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-[#12313B]">
+                Experienced Pediatric Care
+              </p>
+              <p className="text-xs text-[#71858A]">
+                Child-focused medical approach
+              </p>
+            </div>
+          </div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-2">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl font-bold tracking-tight text-[#079B98]">
+              28+
+            </span>
+            <div>
+              <p className="text-sm font-bold text-[#12313B]">
+                Years of Experience
+              </p>
+              <p className="text-xs text-[#71858A]">
+                Across three countries
+              </p>
+            </div>
+          </div>
 
-          {services.map((item, index) => (
+          <div className="text-sm font-medium text-[#60747B]">
+            India <span className="mx-2 text-[#079B98]">/</span>
+            Kuwait <span className="mx-2 text-[#079B98]">/</span>
+            UAE
+          </div>
+        </motion.div>
 
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 70 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: .7,
-                delay: index * .2,
-              }}
-              viewport={{ once: true }}
-              className="group perspective-[2000px]"
-            >
+        {/* Service panels */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          {services.map((item, index) => {
+            const Icon = item.icon;
 
-              <div
-                className="
-                relative
-                h-[420px]
-                overflow-hidden
-                rounded-[32px]
-                border border-white/40
-                bg-white/20
-                backdrop-blur-xl
-                shadow-[0_20px_60px_rgba(0,0,0,.12)]
-                transition-all
-                duration-700
-                group-hover:-translate-y-4
-                group-hover:rotate-x-2
-                group-hover:rotate-y-2
-                group-hover:shadow-[0_30px_80px_rgba(14,165,233,.35)]
-              "
+            return (
+              <motion.article
+                key={item.number}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.65,
+                  delay: index * 0.15,
+                  ease: "easeOut",
+                }}
+                className="group relative min-w-0"
               >
+                <div className="relative flex min-h-[440px] flex-col overflow-hidden rounded-[26px] bg-[#103640] sm:min-h-[470px]">
 
-                {/* Animated Border */}
-
-                <div className="absolute inset-0 rounded-[32px] p-[1.5px] bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500 opacity-0 transition duration-700 group-hover:opacity-100">
-
-                  <div className="h-full w-full rounded-[30px] bg-transparent" />
-
-                </div>
-
-                {/* Image */}
-
-                <div className="absolute inset-0 overflow-hidden">
-
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="h-full w-full object-cover transition duration-1000 group-hover:scale-110 group-hover:rotate-2"
-                  />
-
-                </div>
-
-                {/* Overlay */}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001a35] via-[#001a3550] to-transparent" />
-
-                {/* Floating Glow */}
-
-                <div className="absolute -left-20 top-10 h-40 w-40 rounded-full bg-cyan-400/20 blur-[90px] group-hover:bg-sky-400/40 transition duration-700" />
-
-                {/* Content */}
-
-                <div className="absolute bottom-0 z-20 p-8">
-
-                  <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-lg border border-white/20">
-
-                    <ArrowUpRight
-                      className="text-white transition duration-500 group-hover:rotate-45"
-                      size={26}
+                  {/* Image */}
+                  <div className="absolute inset-0">
+                    <Image
+                      src={item.img}
+                      alt={
+                        index === 0
+                          ? "General pediatric healthcare and child health services"
+                          : "Specialized healthcare for newborns, children and adolescents"
+                      }
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                     />
-
                   </div>
 
-                  <h3 className="text-2xl font-bold leading-snug text-white lg:text-3xl">
+                  {/* Image overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#071F27] via-[#071F27]/65 to-[#071F27]/5" />
 
-                    {item.title}
+                  {/* Top label */}
+                  <div className="relative z-10 flex items-center justify-between p-6 sm:p-8">
+                    <span className="rounded-full border border-white/30 bg-[#0B3038]/40 px-4 py-2 text-[10px] font-bold tracking-[0.18em] text-white backdrop-blur-sm">
+                      {item.eyebrow}
+                    </span>
 
-                  </h3>
+                    <span className="text-3xl font-light text-white/70">
+                      {item.number}
+                    </span>
+                  </div>
 
-                  <p className="mt-4 text-[15px] leading-7 text-white/90">
+                  {/* Bottom content */}
+                  <div className="relative z-10 mt-auto p-6 sm:p-8">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-white backdrop-blur-md transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-[#079B98]">
+                      <Icon size={23} strokeWidth={1.7} />
+                    </div>
 
-                    {item.desc}
+                    <h3 className="max-w-lg text-2xl font-bold leading-tight text-white sm:text-3xl">
+                      {item.title}
+                    </h3>
 
-                  </p>
+                    <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-[15px]">
+                      {item.desc}
+                    </p>
 
+                    <div className="mt-7 flex items-center justify-between border-t border-white/20 pt-5">
+                      <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/70">
+                        Child-focused healthcare
+                      </span>
+
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white transition-all duration-500 group-hover:rotate-45 group-hover:border-[#079B98] group-hover:bg-[#079B98]">
+                        <ArrowUpRight size={20} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hover shine */}
+                  <div className="pointer-events-none absolute -left-1/2 top-0 z-10 h-full w-1/3 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-all duration-1000 group-hover:left-[130%]" />
                 </div>
-
-                {/* Shine Effect */}
-
-                <div
-                  className="
-                    absolute
-                    -left-full
-                    top-0
-                    h-full
-                    w-1/2
-                    rotate-12
-                    bg-gradient-to-r
-                    from-transparent
-                    via-white/30
-                    to-transparent
-                    transition-all
-                    duration-1000
-                    group-hover:left-[140%]
-                  "
-                />
-
-              </div>
-
-            </motion.div>
-
-          ))}
-
+              </motion.article>
+            );
+          })}
         </div>
 
-      </div>
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-10 flex flex-col items-start justify-between gap-5 rounded-2xl bg-[#E5F3F2] px-6 py-7 sm:flex-row sm:items-center sm:px-9"
+        >
+          <div>
+            <p className="text-lg font-bold text-[#12313B]">
+              Your child's health deserves thoughtful care.
+            </p>
+            <p className="mt-1 text-sm text-[#60747B]">
+              Learn more about Dr. Gaurav Jadon's pediatric services.
+            </p>
+          </div>
 
+          <Link
+            href="/services"
+            className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-[#087F80] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#065F63] hover:shadow-lg hover:shadow-[#087F80]/20"
+            aria-label="Explore pediatric services"
+          >
+            Explore Services
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </Link>
+        </motion.div>
+      </div>
     </section>
   );
 }

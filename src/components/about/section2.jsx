@@ -1,108 +1,285 @@
-// Section2.jsx
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Stethoscope, HeartPulse, GraduationCap, Award, Baby, ShieldCheck, ArrowRight
+  ArrowUpRight,
+  GraduationCap,
+  Stethoscope,
+  BookOpen,
+  Globe2,
+  Award,
+  HeartPulse,
+  CheckCircle2,
 } from "lucide-react";
 
-const floatingIcons = [
-  { Icon: Stethoscope, top: "8%", left: "4%" },
-  { Icon: HeartPulse, top: "15%", right: "6%" },
-  { Icon: GraduationCap, bottom: "18%", left: "8%" },
-  { Icon: Award, bottom: "12%", right: "10%" },
-  { Icon: Baby, top: "52%", left: "2%" },
-  { Icon: ShieldCheck, top: "55%", right: "2%" },
+const journey = [
+  {
+    number: "01",
+    title: "Clinical Experience",
+    description:
+      "Over 28 years of post-specialization pediatric experience across India, Kuwait and the UAE.",
+    icon: Stethoscope,
+  },
+  {
+    number: "02",
+    title: "Child Healthcare",
+    description:
+      "General pediatric care, childhood illnesses, growth, development and pediatric emergencies.",
+    icon: HeartPulse,
+  },
+  {
+    number: "03",
+    title: "Medical Education",
+    description:
+      "Involvement in teaching, clinical audits and professional pediatric education.",
+    icon: GraduationCap,
+  },
+  {
+    number: "04",
+    title: "Research & Development",
+    description:
+      "Participation in international research forums and scientific publications.",
+    icon: BookOpen,
+  },
 ];
 
-const timeline = [
-  "28 years of clinical practice across India, Kuwait and UAE.",
-  "Expert in General Pediatrics from birth to 18 years",
-  "Managed pediatric emergencies and complex critical cases.",
-  "Research, teaching and international medical conferences.",
-  "Published scientific papers in reputed PubMed journals."
+const qualifications = [
+  "MBBS",
+  "DCH",
+  "DNB Pediatrics",
+  "Diploma in European Board of Pediatrics",
 ];
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.13 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: "easeOut" },
+  },
+};
 
 export default function Section2() {
   return (
     <section
-      className="relative overflow-hidden py-20 lg:py-28 px-4 lg:px-20 bg-cover bg-center"
-      style={{ backgroundImage: "url('/about2.png')" }}
+      id="about-doctor"
+      aria-labelledby="doctor-profile-heading"
+      className="relative isolate overflow-hidden bg-[#092D35] text-white"
     >
-      <div className="absolute inset-0 bg-black/35"/>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,.25),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(59,130,246,.25),transparent_35%),radial-gradient(circle_at_50%_100%,rgba(6,182,212,.18),transparent_40%)]"/>
-      {floatingIcons.map(({Icon,...style},i)=>(
-        <motion.div key={i} style={style}
-          animate={{y:[0,-14,0],rotate:[0,6,-6,0]}}
-          transition={{duration:5+i,repeat:Infinity}}
-          className="absolute hidden lg:flex z-20">
-          <div className="rounded-2xl border border-white/20 bg-white/15 backdrop-blur-xl p-4 shadow-2xl">
-            <Icon className="h-8 w-8 text-cyan-300"/>
+      {/* FULL BACKGROUND IMAGE */}
+      <div className="absolute inset-0 -z-20">
+        <div
+          className="absolute inset-0 bg-[url('/about2.png')] bg-cover bg-center"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Image treatment */}
+      <div className="absolute inset-0 -z-10 bg-[#082B33]/80" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#06252D]/90 via-[#092D35]/65 to-[#092D35]/80" />
+
+      {/* Main content */}
+      <div className="mx-auto max-w-[1500px] px-5 py-14 sm:px-9 sm:py-16 lg:px-16 lg:py-20">
+
+        {/* TOP EDITORIAL HEADER */}
+        <div className="grid gap-7 border-b border-white/20 pb-9 lg:grid-cols-[1fr_auto] lg:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-[2px] w-9 bg-[#61D3C5]" />
+              <span className="text-xs font-bold uppercase tracking-[0.24em] text-[#8DE4D9]">
+                About the Doctor
+              </span>
+            </div>
+
+            <h2
+              id="doctor-profile-heading"
+              className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[68px]"
+            >
+              A Career Dedicated
+              <br className="hidden sm:block" />
+              to <span className="text-[#66D7C8]">Children's Health.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex items-center gap-5 lg:pb-2"
+          >
+            <div>
+              <span className="block text-6xl font-semibold leading-none tracking-[-0.07em] text-white sm:text-7xl">
+                28<span className="text-[#66D7C8]">+</span>
+              </span>
+              <span className="mt-2 block text-[11px] font-bold uppercase tracking-[0.16em] text-white/65">
+                Years Experience
+              </span>
+            </div>
+
+            <div className="h-16 w-px bg-white/25" />
+
+            <div>
+              <Globe2 size={23} className="mb-2 text-[#66D7C8]" />
+              <span className="block text-sm font-semibold text-white">
+                India · Kuwait · UAE
+              </span>
+              <span className="mt-1 block text-xs text-white/60">
+                International practice
+              </span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* DOCTOR INTRODUCTION */}
+        <div className="grid gap-8 border-b border-white/20 py-9 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8DE4D9]">
+              Meet Your Pediatrician
+            </span>
+
+            <h3 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Dr. Gaurav Jadon
+            </h3>
+
+            <p className="mt-2 text-base font-medium text-[#83DCCF]">
+              Consultant Pediatrician
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.12 }}
+          >
+            <p className="text-base leading-8 text-white/80 sm:text-lg">
+              Dr. Gaurav Jadon brings over 28 years of post-specialization
+              experience in pediatrics across India, Kuwait and the UAE.
+              His professional work combines general pediatric practice,
+              academic involvement and a commitment to evidence-based
+              healthcare for infants, children and adolescents.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* PROFESSIONAL JOURNEY */}
+        <div className="pt-9">
+          <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8DE4D9]">
+                Expertise & Contributions
+              </span>
+              <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">
+                Professional Journey
+              </h3>
+            </div>
+
+            <span className="hidden text-xs font-medium uppercase tracking-[0.15em] text-white/45 sm:block">
+              Experience · Education · Research
+            </span>
           </div>
-        </motion.div>
-      ))}
-      <div className="relative max-w-7xl mx-auto">
-        <motion.div initial={{opacity:0,y:50}} whileInView={{opacity:1,y:0}} viewport={{once:true}}
-          className="relative rounded-[36px] p-[1px] bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400">
-          <div className="relative rounded-[36px] border border-white/15 bg-white/10 backdrop-blur-2xl p-8 lg:p-14 overflow-hidden">
-            <motion.div animate={{y:[0,-8,0]}} transition={{repeat:Infinity,duration:4}}
-              className="absolute right-8 top-8 rounded-3xl bg-white text-center p-5 shadow-xl">
-              <div className="text-4xl font-black text-cyan-600">28+</div>
-              <div className="text-sm text-slate-600">Years Experience</div>
-            </motion.div>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/15 px-4 py-2 text-cyan-100">
-                  <HeartPulse size={18}/> ABOUT THE DOCTOR
-                </span>
-                <h2 className="mt-6 text-5xl lg:text-6xl font-black text-white">Dr. Gaurav Jadon</h2>
-                <p className="mt-3 text-cyan-200 text-xl font-semibold">International Pediatric Specialist</p>
-                <p className="mt-5 text-white/90">Diploma in European Board of Pediatrics</p>
-                <p className="text-white/80">DNB Pediatrics • DCH • MBBS</p>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="grid gap-px overflow-hidden border border-white/15 bg-white/15 sm:grid-cols-2 xl:grid-cols-4"
+          >
+            {journey.map((entry) => {
+              const Icon = entry.icon;
 
-                <div className="grid grid-cols-3 gap-4 mt-10">
-                  {[
-                    ["28+","Years"],
-                    ["3","Countries"],
-                    ["1000+","Children"]
-                  ].map(([v,l])=>(
-                    <div key={l} className="rounded-3xl bg-white/10 border border-white/15 backdrop-blur-xl p-5 text-center hover:-translate-y-2 transition">
-                      <div className="text-3xl font-bold text-cyan-300">{v}</div>
-                      <div className="text-white/80">{l}</div>
-                    </div>
-                  ))}
-                </div>
+              return (
+                <motion.article
+                  key={entry.number}
+                  variants={item}
+                  className="group relative min-h-[220px] bg-[#0B3540]/90 p-6 transition-colors duration-300 hover:bg-[#10505A]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-bold tracking-[0.15em] text-[#68D9CA]">
+                      / {entry.number}
+                    </span>
 
-                <div className="mt-10 rounded-3xl bg-gradient-to-r from-cyan-500 to-blue-600 p-6 text-white shadow-xl">
-                  <p className="italic text-lg">“Every child deserves compassionate care backed by science.”</p>
-                  <p className="mt-3 font-semibold">— Dr. Gaurav Jadon</p>
-                </div>
-              </div>
+                    <Icon
+                      size={23}
+                      strokeWidth={1.5}
+                      className="text-white/65 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-[#77E0D1]"
+                    />
+                  </div>
 
-              <div>
-                <h3 className="text-3xl font-bold text-white mb-8">Professional Journey</h3>
-                <div className="space-y-8">
-                  {timeline.map((t,i)=>(
-                    <div key={i} className="flex gap-5">
-                      <div className="flex flex-col items-center">
-                        <div className="w-4 h-4 rounded-full bg-cyan-400"/>
-                        {i<timeline.length-1 && <div className="w-1 flex-1 bg-cyan-400/40 mt-2"/>}
-                      </div>
-                      <p className="text-white/90 leading-8">{t}</p>
-                    </div>
-                  ))}
+                  <h4 className="mt-9 text-xl font-semibold text-white">
+                    {entry.title}
+                  </h4>
+
+                  <p className="mt-3 text-sm leading-7 text-white/65">
+                    {entry.description}
+                  </p>
+
+                  <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#66D7C8] transition-all duration-500 group-hover:w-full" />
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* QUALIFICATIONS + CTA */}
+        <div className="mt-9 grid gap-7 border-t border-white/20 pt-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <Award size={21} className="text-[#68D9CA]" />
+              <h3 className="text-lg font-semibold text-white">
+                Education & Qualifications
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              {qualifications.map((qualification) => (
+                <div
+                  key={qualification}
+                  className="flex items-center gap-2 text-sm text-white/75"
+                >
+                  <CheckCircle2
+                    size={15}
+                    className="shrink-0 text-[#68D9CA]"
+                  />
+                  {qualification}
                 </div>
-                <div className="mt-10 rounded-3xl border border-cyan-400/20 bg-white/10 p-6 backdrop-blur-xl">
-                  <h4 className="text-2xl font-bold text-cyan-200">Dedicated to Children's Health</h4>
-                  <p className="mt-3 text-white/80">Compassionate, evidence-based pediatric care backed by decades of international experience.</p>
-                  <button className="mt-6 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 font-semibold text-white">Learn More <ArrowRight size={18}/></button>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </motion.div>
+
+          <Link
+            href="/about"
+            className="group inline-flex w-fit items-center gap-4 border-b border-[#68D9CA] pb-2 text-sm font-semibold text-white transition-colors hover:text-[#68D9CA]"
+          >
+            Explore Professional Profile
+            <ArrowUpRight
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </Link>
+        </div>
+
       </div>
     </section>
   );
