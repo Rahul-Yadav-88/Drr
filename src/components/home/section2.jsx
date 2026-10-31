@@ -325,7 +325,8 @@ export default function Section2() {
                 </div>
 
                 <p className="mt-2 text-lg font-semibold text-white">
-                  NMC Speciality Hospital
+                  Consultant Pediatrician
+
                 </p>
 
                 <p className="mt-1 text-sm text-slate-400">
