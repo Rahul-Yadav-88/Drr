@@ -121,7 +121,7 @@ export default function Section6() {
                   Clinical experience
                 </p>
                 <p className="mt-1 text-3xl font-black text-white">
-                  28+ Years
+                  29 Years
                 </p>
               </div>
             </div>

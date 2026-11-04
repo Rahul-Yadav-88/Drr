@@ -81,7 +81,7 @@ const HeroSection = () => {
           <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
 
           <span className="text-[10px] font-semibold tracking-wide text-white sm:text-xs">
-            28+ Years of Experience
+            29 Years of Experience
           </span>
         </div>
       </motion.div>
@@ -219,7 +219,7 @@ const HeroSection = () => {
 
           <div className="flex items-center gap-2 text-right">
             <span className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              28+
+              29
             </span>
             <span className="max-w-[85px] text-[10px] leading-4 text-white/60 sm:max-w-none sm:text-xs">
               Years of

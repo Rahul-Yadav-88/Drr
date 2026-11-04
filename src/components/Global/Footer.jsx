@@ -116,7 +116,7 @@ export default function Footer() {
 
             <p className="mt-6 max-w-md text-sm leading-8 text-white/60">
               Dr. Gaurav Jadon is a Consultant Pediatrician with
-              over 28 years of clinical experience across India,
+              over 29 years of clinical experience across India,
               Kuwait and the UAE, providing compassionate and
               evidence-based healthcare for children.
             </p>

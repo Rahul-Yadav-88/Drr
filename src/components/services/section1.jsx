@@ -24,9 +24,9 @@ const services = [
   },
   {
     number: "02",
-    eyebrow: "NEWBORN TO ADOLESCENCE",
+    eyebrow: "INFANT TO ADOLESCENCE",
     title: "Specialized Care for Children up to 18 Years",
-    desc: "Personalized healthcare for newborns, infants, children and adolescents, with attention to their changing medical needs, preventive health and age-appropriate treatment.",
+    desc: "Personalized healthcare for infants, children and adolescents, with attention to their changing medical needs, preventive health and age-appropriate treatment.",
     img: "/2.jpg",
     icon: HeartPulse,
     accent: "bg-[#E5EFFB]",
@@ -82,7 +82,7 @@ export default function Section1() {
           <div className="lg:pb-2">
             <p className="text-base leading-8 text-[#60747B] md:text-[17px]">
               Dr. Gaurav Jadon provides compassionate, evidence-based
-              healthcare for children up to 18 years. With 28 years of
+              healthcare for children up to 18 years. With 29 years of
               clinical experience across India, Kuwait and the UAE, his
               approach focuses on early diagnosis, preventive care,
               healthy development and personalized treatment.
@@ -114,7 +114,7 @@ export default function Section1() {
 
           <div className="flex items-center gap-3">
             <span className="text-3xl font-bold tracking-tight text-[#079B98]">
-              28+
+              29
             </span>
             <div>
               <p className="text-sm font-bold text-[#12313B]">
@@ -161,7 +161,7 @@ export default function Section1() {
                       alt={
                         index === 0
                           ? "General pediatric healthcare and child health services"
-                          : "Specialized healthcare for newborns, children and adolescents"
+                          : "Specialized healthcare for infants, children and adolescents"
                       }
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"

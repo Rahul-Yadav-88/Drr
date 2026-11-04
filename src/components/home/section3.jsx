@@ -23,9 +23,9 @@ const features = [
   {
     number: "01",
     icon: Award,
-    title: "28 Years of Clinical Experience",
+    title: "29 Years of Clinical Experience",
     description:
-      "28 years of pediatric clinical experience across India, Kuwait and the UAE, bringing international exposure to child healthcare.",
+      "29 years of pediatric clinical experience across India, Kuwait and the UAE, bringing international exposure to child healthcare.",
     color: "from-cyan-500 to-blue-500",
     bg: "bg-cyan-50",
   },
@@ -227,7 +227,7 @@ export default function Section3() {
                   <div className="relative flex items-center gap-5">
                     <div>
                       <span className="block text-6xl font-black tracking-tight">
-                        28+
+                        29
                       </span>
 
                       <span className="mt-2 block text-xs font-bold uppercase tracking-[2px] text-white/80">

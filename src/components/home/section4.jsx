@@ -174,7 +174,7 @@ export default function Section4() {
               <div className="flex flex-wrap items-end justify-between gap-5">
                 <div>
                   <div className="text-6xl font-black tracking-[-0.06em] text-white sm:text-7xl">
-                    28<span className="text-[#55D9C9]">+</span>
+                    29
                   </div>
                   <p className="mt-2 text-sm font-medium text-white/75">
                     Years of clinical experience

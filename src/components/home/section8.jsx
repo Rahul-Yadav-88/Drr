@@ -80,7 +80,7 @@ export default function Section8() {
 
                 <div className="mt-8 flex items-end gap-3">
                   <span className="text-8xl font-light leading-none tracking-tighter text-white sm:text-9xl">
-                    28
+                    29
                   </span>
                   <div className="pb-2">
                     <span className="block text-3xl font-light text-cyan-300">+</span>
@@ -140,7 +140,7 @@ export default function Section8() {
             </p>
 
             <p className="mt-7 text-base leading-8 text-white/75 sm:text-lg">
-              Dr. Gaurav Jadon is a Consultant Pediatrician with over 28 years
+              Dr. Gaurav Jadon is a Consultant Pediatrician with over 29 years
               of post-specialization experience across India, Kuwait, and the
               UAE. He specializes in General Pediatrics, combining clinical
               expertise with academic leadership.

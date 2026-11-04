@@ -113,7 +113,7 @@ export default function ContactSection() {
 
               <p className="mt-5 max-w-md text-sm leading-7 text-white/70 sm:text-base">
                 Dr. Gaurav Jadon is a Consultant Pediatrician with
-                28 years of clinical experience across India,
+                29 years of clinical experience across India,
                 Kuwait and the UAE, providing evidence-based
                 healthcare for children.
               </p>
@@ -122,7 +122,7 @@ export default function ContactSection() {
             {/* Experience */}
             <div className="relative z-10 mt-10 flex items-center gap-5 border-y border-white/15 py-6">
               <div className="text-5xl font-bold tracking-tight text-[#7FE1D8]">
-                28+
+                29
               </div>
               <div>
                 <p className="font-bold text-white">
