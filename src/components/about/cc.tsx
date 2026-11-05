@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -23,7 +24,6 @@ const galleryImages = [
   { src: "/5.jpeg", alt: "Gallery image 5" },
   { src: "/6.jpeg", alt: "Gallery image 6" },
   { src: "/7.jpeg", alt: "Gallery image 7" },
-
 ];
 
 export default function ImageCarousel() {
@@ -42,15 +42,18 @@ export default function ImageCarousel() {
     setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
   }, [totalImages]);
 
+  // Automatic slideshow
   useEffect(() => {
     if (!isPlaying || isFullscreen || totalImages <= 1) return;
 
     const timer = setInterval(nextImage, 4000);
+
     return () => clearInterval(timer);
   }, [isPlaying, isFullscreen, nextImage, totalImages]);
 
+  // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") setIsFullscreen(false);
       if (event.key === "ArrowRight") nextImage();
       if (event.key === "ArrowLeft") prevImage();
@@ -58,9 +61,12 @@ export default function ImageCarousel() {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [nextImage, prevImage]);
 
+  // Prevent background scrolling in fullscreen
   useEffect(() => {
     document.body.style.overflow = isFullscreen ? "hidden" : "";
 
@@ -235,7 +241,7 @@ export default function ImageCarousel() {
                     />
 
                     {activeIndex === index && (
-                      <div className="absolute inset-0 border-2 border-[#168b86] rounded-lg" />
+                      <div className="absolute inset-0 rounded-lg border-2 border-[#168b86]" />
                     )}
                   </div>
 
