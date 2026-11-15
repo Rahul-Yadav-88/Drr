@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -9,6 +10,7 @@ import {
   Star,
   Heart,
   Sparkles,
+  Camera,
 } from "lucide-react";
 
 const testimonials = [
@@ -54,6 +56,23 @@ const testimonials = [
   },
 ];
 
+// Add your actual patient photographs inside public/patients/
+// Remove the third object if you only have two photographs.
+const patientImages = [
+  {
+    src: "/p1.jpeg",
+    alt: "A special moment with a young patient",
+  },
+  {
+    src: "/p2.jpeg",
+    alt: "A happy moment with a young patient",
+  },
+  {
+    src: "/p3.jpeg",
+    alt: "A memorable moment with a young patient",
+  },
+];
+
 export default function TestimonialSection() {
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -65,7 +84,9 @@ export default function TestimonialSection() {
   }, []);
 
   const prev = useCallback(() => {
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   }, []);
 
   useEffect(() => {
@@ -104,7 +125,9 @@ export default function TestimonialSection() {
             <h2 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
               Trusted by families.
               <br />
-              <span className="text-sky-600">Loved by little ones.</span>
+              <span className="text-sky-600">
+                Loved by little ones.
+              </span>
             </h2>
           </div>
 
@@ -133,7 +156,8 @@ export default function TestimonialSection() {
                 </div>
 
                 <span className="text-sm font-medium tracking-[0.2em] text-white/40">
-                  {active.number} / {String(testimonials.length).padStart(2, "0")}
+                  {active.number} /{" "}
+                  {String(testimonials.length).padStart(2, "0")}
                 </span>
               </div>
 
@@ -276,7 +300,9 @@ export default function TestimonialSection() {
             <div className="mt-6 rounded-2xl bg-[#f0f9fc] p-5">
               <div className="mb-2 flex items-center gap-2 text-sky-700">
                 <Heart size={17} />
-                <span className="text-sm font-semibold">Care comes first</span>
+                <span className="text-sm font-semibold">
+                  Care comes first
+                </span>
               </div>
               <p className="text-xs leading-6 text-slate-500">
                 Building trust with families through compassionate and
@@ -286,13 +312,68 @@ export default function TestimonialSection() {
           </div>
         </div>
 
+        {/* Patient Photo Gallery */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto mt-24 max-w-6xl"
+        >
+          {/* Gallery heading */}
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-700 shadow-sm">
+              <Camera size={14} />
+              Moments of Happiness
+            </div>
+
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+              Little Moments,{" "}
+              <span className="text-sky-600">Big Smiles.</span>
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-500 md:text-base">
+              Every smile tells a story. A few special moments from our
+              journey of caring for little ones.
+            </p>
+          </div>
+
+          {/* Patient images */}
+          <div className="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 md:grid-cols-3 md:gap-7">
+            {patientImages.map((image, i) => (
+              <motion.div
+                key={image.src}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.12,
+                }}
+                className="group relative w-full max-w-[390px] overflow-hidden rounded-[28px] bg-white p-2 shadow-[0_15px_45px_rgba(15,65,90,0.08)]"
+              >
+                <div className="relative overflow-hidden rounded-[22px]">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    className="h-[320px] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-[370px]"
+                  />
+
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#123e55]/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Bottom note */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3 text-center text-xs font-medium uppercase tracking-[0.15em] text-slate-400"
+          className="mt-12 flex flex-wrap items-center justify-center gap-3 text-center text-xs font-medium uppercase tracking-[0.15em] text-slate-400"
         >
           <span className="h-px w-8 bg-sky-200" />
           Your trust means everything

@@ -170,6 +170,14 @@ const awards = [
   },
 ];
 
+const qualifications = [
+  "European Board of Pediatrics",
+  "Professional Diploma in Pediatrics – Royal College of Physicians of Ireland",
+  "DNB – Pediatrics",
+  "DCH – Diploma in Child Health",
+  "MBBS",
+];
+
 const container = {
   hidden: {},
   visible: {
@@ -281,17 +289,22 @@ export default function Section2() {
               Consultant Pediatrician
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {["DNB Pediatrics", "DCH", "MBBS", "European Board of Pediatrics"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/75"
-                  >
-                    {tag}
+            {/* EDUCATIONAL QUALIFICATIONS */}
+            <div className="mt-6 space-y-3">
+              {qualifications.map((qualification, index) => (
+                <div
+                  key={index}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle2
+                    size={17}
+                    className="mt-1 shrink-0 text-[#68D9CA]"
+                  />
+                  <span className="text-sm leading-6 text-white/80">
+                    {qualification}
                   </span>
-                )
-              )}
+                </div>
+              ))}
             </div>
           </motion.div>
 

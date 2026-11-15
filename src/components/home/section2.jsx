@@ -259,9 +259,11 @@ export default function Section2() {
             </p>
 
             <p className="mt-4 text-base leading-8 text-slate-400">
-              His recent 14.5 years of experience at NMC Speciality
-              Hospital, Dubai, further reflects his long-standing
-              involvement in pediatric healthcare.
+               His 15 and a half years of experience in the UAE, including
+  14.5 years at NMC Speciality Hospital, Dubai, and one year
+  at Mediclinic Welcare Hospital, Dubai, further reflects
+  his extensive clinical expertise and long-standing
+  contribution to pediatric healthcare.
             </p>
 
             {/* Expertise */}
