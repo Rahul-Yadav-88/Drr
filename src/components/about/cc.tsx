@@ -28,8 +28,6 @@ const galleryImages = [
   { src: "/7.jpeg", alt: "Gallery image 7" },
 ];
 
-// Add your local videos inside public/videos/
-// Replace the sample names with your actual video filenames.
 const galleryVideos = [
   {
     src: "/v1.mp4",
@@ -43,20 +41,15 @@ const galleryVideos = [
     title: "Special Moments",
     description: "Memorable moments with our little patients.",
   },
-  // {
-  //   src: "/videos/video-3.mp4",
-  //   poster: "/videos/video-3-poster.jpg",
-  //   title: "Behind the Care",
-  //   description: "A closer look at compassionate healthcare.",
-  // },
 ];
 
 export default function ImageCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const [activeVideo, setActiveVideo] = useState(null);
+  const [activeVideo, setActiveVideo] = useState<
+    (typeof galleryVideos)[number] | null
+  >(null);
 
   const totalImages = galleryImages.length;
   const activeImage = galleryImages[activeIndex];
@@ -66,9 +59,7 @@ export default function ImageCarousel() {
   }, [totalImages]);
 
   const prevImage = useCallback(() => {
-    setActiveIndex(
-      (prev) => (prev - 1 + totalImages) % totalImages
-    );
+    setActiveIndex((prev) => (prev - 1 + totalImages) % totalImages);
   }, [totalImages]);
 
   // Automatic slideshow
@@ -82,7 +73,7 @@ export default function ImageCarousel() {
 
   // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsFullscreen(false);
         setActiveVideo(null);
@@ -101,7 +92,7 @@ export default function ImageCarousel() {
     };
   }, [nextImage, prevImage, activeVideo]);
 
-  // Prevent background scrolling when a popup is open
+  // Prevent background scrolling when a modal is open
   useEffect(() => {
     const isModalOpen = isFullscreen || activeVideo !== null;
 
@@ -116,14 +107,11 @@ export default function ImageCarousel() {
 
   return (
     <section className="relative overflow-hidden bg-[#f3f8f7] py-20 md:py-28">
-
       {/* Background decoration */}
       <div className="pointer-events-none absolute -left-40 top-20 h-80 w-80 rounded-full bg-[#168b86]/10 blur-3xl" />
-
       <div className="pointer-events-none absolute -right-40 bottom-10 h-96 w-96 rounded-full bg-[#c69a45]/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
-
         {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -135,15 +123,13 @@ export default function ImageCarousel() {
           <div>
             <div className="mb-4 flex items-center gap-3">
               <span className="h-[2px] w-10 bg-[#c69a45]" />
-
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#168b86]">
                 Gallery
               </span>
             </div>
 
             <h2 className="text-3xl font-semibold tracking-tight text-[#12383b] sm:text-4xl md:text-5xl">
-              Moments &{" "}
-              <span className="text-[#168b86]">Memories</span>
+              Moments & <span className="text-[#168b86]">Memories</span>
             </h2>
 
             <p className="mt-4 max-w-xl text-sm leading-7 text-[#647b7a] md:text-base">
@@ -154,7 +140,6 @@ export default function ImageCarousel() {
 
           <div className="flex items-center gap-2 text-sm text-[#54706e]">
             <Images size={18} className="text-[#168b86]" />
-
             <span>
               {String(activeIndex + 1).padStart(2, "0")} /{" "}
               {String(totalImages).padStart(2, "0")} Photos
@@ -162,9 +147,8 @@ export default function ImageCarousel() {
           </div>
         </motion.div>
 
-        {/* PHOTO GALLERY */}
+        {/* Photo gallery layout */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px]">
-
           {/* Featured image */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -174,7 +158,6 @@ export default function ImageCarousel() {
             className="group relative min-w-0 overflow-hidden rounded-3xl border border-[#dce9e6] bg-white p-2 shadow-[0_20px_60px_rgba(18,56,59,0.08)] md:p-3"
           >
             <div className="relative flex h-[350px] items-center justify-center overflow-hidden rounded-2xl bg-[#eaf2f0] sm:h-[450px] lg:h-[540px]">
-
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeImage.src}
@@ -210,14 +193,12 @@ export default function ImageCarousel() {
                 <p className="text-sm font-semibold text-[#12383b]">
                   {activeImage.alt}
                 </p>
-
                 <p className="mt-1 text-xs text-[#829593]">
                   Explore the gallery
                 </p>
               </div>
 
               <div className="flex items-center gap-2">
-
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
                   aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
@@ -241,7 +222,6 @@ export default function ImageCarousel() {
                 >
                   <ChevronRight size={20} />
                 </button>
-
               </div>
             </div>
           </motion.div>
@@ -259,7 +239,6 @@ export default function ImageCarousel() {
                 <h3 className="text-base font-semibold text-[#12383b]">
                   All Photos
                 </h3>
-
                 <p className="mt-1 text-xs text-[#829593]">
                   Select an image to explore
                 </p>
@@ -313,67 +292,52 @@ export default function ImageCarousel() {
           </motion.div>
         </div>
 
-        {/* VIDEO GALLERY */}
+        {/* Video Gallery */}
         {galleryVideos.length > 0 && (
           <div className="mt-24">
-
-            {/* Video heading */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+              className="mb-10"
             >
-              <div>
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="h-[2px] w-10 bg-[#c69a45]" />
-
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#168b86]">
-                    Video Gallery
-                  </span>
-                </div>
-
-                <h2 className="text-3xl font-semibold tracking-tight text-[#12383b] sm:text-4xl md:text-5xl">
-                  Stories in{" "}
-                  <span className="text-[#168b86]">Motion</span>
-                </h2>
-
-                <p className="mt-4 max-w-xl text-sm leading-7 text-[#647b7a] md:text-base">
-                  Explore special moments, experiences and glimpses into
-                  the world of pediatric care.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 text-sm text-[#54706e]">
-                <Video size={18} className="text-[#168b86]" />
-                <span>
-                  {String(galleryVideos.length).padStart(2, "0")} Videos
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-[2px] w-10 bg-[#c69a45]" />
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#168b86]">
+                  Video Gallery
                 </span>
               </div>
+
+              <h2 className="text-3xl font-semibold tracking-tight text-[#12383b] sm:text-4xl">
+                Moments in <span className="text-[#168b86]">Motion</span>
+              </h2>
+
+              <p className="mt-4 max-w-xl text-sm leading-7 text-[#647b7a] md:text-base">
+                Watch special moments and experiences from the journey of
+                pediatric care.
+              </p>
             </motion.div>
 
-            {/* Video cards */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {galleryVideos.map((video, index) => (
-                <motion.button
+                <motion.div
                   key={video.src}
-                  type="button"
-                  onClick={() => {
-                    setIsPlaying(false);
-                    setActiveVideo(index);
-                  }}
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{
                     duration: 0.6,
-                    delay: index * 0.12,
+                    delay: index * 0.15,
                   }}
-                  className="group overflow-hidden rounded-3xl border border-[#dce9e6] bg-white text-left shadow-[0_15px_45px_rgba(18,56,59,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_55px_rgba(18,56,59,0.12)]"
+                  className="group overflow-hidden rounded-3xl border border-[#dce9e6] bg-white shadow-[0_15px_45px_rgba(18,56,59,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(18,56,59,0.12)]"
                 >
-                  {/* Video thumbnail */}
-                  <div className="relative h-60 overflow-hidden bg-[#dcebe7]">
+                  <button
+                    type="button"
+                    onClick={() => setActiveVideo(video)}
+                    className="relative block aspect-video w-full overflow-hidden bg-[#12383b] text-left"
+                    aria-label={`Play ${video.title}`}
+                  >
                     <img
                       src={video.poster}
                       alt={video.title}
@@ -381,32 +345,22 @@ export default function ImageCarousel() {
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
 
-                    <div className="absolute inset-0 bg-[#12383b]/20 transition duration-500 group-hover:bg-[#12383b]/35" />
+                    <div className="absolute inset-0 bg-[#071c1d]/25 transition-colors group-hover:bg-[#071c1d]/45" />
 
-                    {/* Play button */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-white/90 text-[#168b86] shadow-xl backdrop-blur-sm transition duration-300 group-hover:scale-110 group-hover:bg-[#168b86] group-hover:text-white">
-                        <Play size={25} fill="currentColor" className="ml-1" />
-                      </span>
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-white/20 text-white shadow-xl backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#168b86]">
+                        <Play size={27} fill="currentColor" />
+                      </div>
                     </div>
 
-                    <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-[#12383b]/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
-                      <Play size={12} fill="currentColor" />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-[#12383b]/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+                      <Video size={14} />
                       Watch Video
                     </div>
-                  </div>
+                  </button>
 
-                  {/* Video information */}
                   <div className="p-5">
-                    <div className="mb-2 flex items-center justify-between">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#168b86]">
-                        Video {String(index + 1).padStart(2, "0")}
-                      </span>
-
-                      <Video size={17} className="text-[#c69a45]" />
-                    </div>
-
-                    <h3 className="text-lg font-semibold text-[#12383b] transition-colors group-hover:text-[#168b86]">
+                    <h3 className="text-lg font-semibold text-[#12383b]">
                       {video.title}
                     </h3>
 
@@ -414,27 +368,14 @@ export default function ImageCarousel() {
                       {video.description}
                     </p>
                   </div>
-                </motion.button>
+                </motion.div>
               ))}
             </div>
           </div>
         )}
-
-        {/* Closing note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-14 flex flex-wrap items-center justify-center gap-3 text-center text-xs font-medium uppercase tracking-[0.15em] text-[#829593]"
-        >
-          <span className="h-px w-8 bg-[#c69a45]" />
-          Every moment tells a story
-          <span className="h-px w-8 bg-[#c69a45]" />
-        </motion.div>
       </div>
 
-      {/* FULLSCREEN IMAGE VIEWER */}
+      {/* Fullscreen photo viewer */}
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
@@ -496,9 +437,9 @@ export default function ImageCarousel() {
         )}
       </AnimatePresence>
 
-      {/* VIDEO PLAYER POPUP */}
+      {/* Video player modal */}
       <AnimatePresence>
-        {activeVideo !== null && (
+        {activeVideo && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -507,53 +448,50 @@ export default function ImageCarousel() {
             onClick={() => setActiveVideo(null)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 20 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-[#102e30] p-3 shadow-2xl sm:p-5"
               onClick={(event) => event.stopPropagation()}
+              className="relative w-full max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-[#102c2d] shadow-2xl"
             >
-              {/* Close button */}
               <button
                 onClick={() => setActiveVideo(null)}
                 aria-label="Close video"
-                className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition hover:bg-[#168b86]"
+                className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition hover:bg-[#168b86]"
               >
-                <X size={21} />
+                <X size={22} />
               </button>
 
-              {/* Video */}
-              <div className="overflow-hidden rounded-2xl bg-black">
+              <div className="aspect-video w-full bg-black">
                 <video
-                  key={galleryVideos[activeVideo].src}
-                  src={galleryVideos[activeVideo].src}
-                  poster={galleryVideos[activeVideo].poster}
+                  key={activeVideo.src}
+                  src={activeVideo.src}
+                  poster={activeVideo.poster}
                   controls
                   autoPlay
                   playsInline
                   preload="metadata"
-                  className="max-h-[75vh] w-full object-contain"
+                  className="h-full w-full object-contain"
                 >
                   Your browser does not support HTML5 video.
                 </video>
               </div>
 
-              {/* Video details */}
-              <div className="flex flex-col justify-between gap-3 px-2 py-4 sm:flex-row sm:items-center sm:px-3">
+              <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
                 <div>
-                  <h3 className="text-lg font-semibold text-white">
-                    {galleryVideos[activeVideo].title}
+                  <h3 className="text-xl font-semibold text-white">
+                    {activeVideo.title}
                   </h3>
 
-                  <p className="mt-1 text-sm text-white/50">
-                    {galleryVideos[activeVideo].description}
+                  <p className="mt-2 text-sm leading-6 text-slate-400">
+                    {activeVideo.description}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs text-white/50">
-                  <Volume2 size={15} />
-                  Use player controls for sound and playback
+                <div className="flex shrink-0 items-center gap-2 text-xs text-teal-300">
+                  <Volume2 size={17} />
+                  Video Player
                 </div>
               </div>
             </motion.div>
